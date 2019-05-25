@@ -51,9 +51,14 @@ def login():
 def handlelogin():
     _ID=request.form.get('ID')
     if selectone_student(_ID):
-        return("your data"+str(selectone_student(_ID)))
+        l=selectone_student(_ID)
+        print(l)
+        Name=l[0][0]
+        ID=l[0][1]
+        Age=l[0][2]
+        return(render_template('handlelogin.html', Name=Name ,ID=ID, Age=Age))
     else:
-     return("you are not authorized to use server resources")
+     return(render_template('error.html'))
 
 
 if __name__=='__main__':
